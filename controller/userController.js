@@ -87,7 +87,7 @@ const logout = asyncHandler(async (req, res) => {
       return res.sendStatus(204); // forbidden
       console.log("dddd")
     }
-    await User.findOneAndUpdate(refreshToken, {
+    await User.findByIdAndUpdate(refreshToken, {
       refreshToken: "",
     });
     res.clearCookie("refreshToken", {
@@ -137,7 +137,6 @@ const deleteaUser =asyncHandler(async(req,res)=>{
 const updateauser =asyncHandler(async(req,res)=>{
     const{ _id} =req.user;
 validateMongoDbId(_id);
-
     try{
      const updateauser =await User.findByIdAndUpdate(_id,{
         firstname:req?.body?.firstname,
