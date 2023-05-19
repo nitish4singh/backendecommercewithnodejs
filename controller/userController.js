@@ -198,4 +198,4 @@ const unblockUser = asyncHandler(async(req,res)=>{
 );
 
 
-module.exports ={createUser,loginUserCtrl, getallUser,getsingleUser,deleteaUser,updateauser,unblockUser,blockUser,handleRefreshToken,logout};
+module.exports ={createUser,loginUserCtrl, getallUser,getsingleUser,deleteaUser,updateauser,unblockUser,blockUser,handleRefreshToken,logout,     };

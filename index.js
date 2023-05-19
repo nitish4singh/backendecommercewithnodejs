@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const dbConnect = require('./config/dbConnect');
 const{notFound,errorHandler} =require("./middlewares/errorHandling")
@@ -5,14 +6,18 @@ const app =express();
 const dotenv =require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 const authRouter =require('./routes/authRoute');
-const bodyParser = require('body-parser');
+const productRouter =require('./routes/productRoute')
 const cookiesParser =require('cookie-parser');
-dbConnect();
 
+
+
+dbConnect();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookiesParser());
-app.use('/api/user', authRouter);
+app.use("/api/user", authRouter);
+app.use("/api/product", productRouter);
+
 
 app.use(notFound);
 app.use(errorHandler);
