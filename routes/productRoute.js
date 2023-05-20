@@ -8,7 +8,7 @@ router.post("/" ,createProduct);
 router.get("/:id" ,getaProduct);
 router.put("/:id" ,authMiddleware,isAdmin,updateProduct);
 router.delete("/:id",authMiddleware,isAdmin ,deleteProduct);
-router.get("/" ,getAllProduct);
+router.get("/" , getAllProduct);
 
 
 module.exports = router;

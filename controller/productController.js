@@ -65,7 +65,7 @@ const deleteProduct =asyncHandler( async (req, res) => {
     res.status(200).json(product);
 });
 
-
+// to get a single product
 
 const getaProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -77,6 +77,25 @@ const getaProduct = asyncHandler(async (req, res) => {
   }
 });
 
+
+
+// to get all the produuct from the database using filtlering  rough way 
+
+// const getAllProduct = asyncHandler(async (req, res) => {
+//   //const { id } = req.params;
+//   console.log(req.query);
+//   try {
+//     const getallProduct = await Product.find(req.query);
+//     res.json(getallProduct);
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
+
+
+
+
+
 const getAllProduct = asyncHandler(async (req, res) => {
   try {
     // Filtering
@@ -85,11 +104,9 @@ const getAllProduct = asyncHandler(async (req, res) => {
     excludeFields.forEach((el) => delete queryObj[el]);
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-
     let query = Product.find(JSON.parse(queryStr));
 
     // Sorting
-
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
       query = query.sort(sortBy);
@@ -97,8 +114,8 @@ const getAllProduct = asyncHandler(async (req, res) => {
       query = query.sort("-createdAt");
     }
 
-    // limiting the fields
 
+    // limiting the fields
     if (req.query.fields) {
       const fields = req.query.fields.split(",").join(" ");
       query = query.select(fields);

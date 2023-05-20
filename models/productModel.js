@@ -37,6 +37,8 @@ var productSchema = new mongoose.Schema(
     sold: {
       type: Number,
       default: 0,
+      // to  not display the user sold item 
+      select:false
     },
     images: [
       {
