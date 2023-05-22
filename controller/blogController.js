@@ -36,27 +36,29 @@ const updateBlog =asyncHandler(async(req,res)=>{
     });
 // fetch a blog
 
-const getBlog =asyncHandler(async(req,res)=>{
-    const {id} =req.params;
-    validateMongoDbId(id);
-    try{
-    const getBlog=await Blog.findById(id);
-   const updateViews = await Blog.findByIdAndUpdate(
-    id,
+const getBlog = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+  try {
+    const getBlog = await Blog.findById(id)
+      .populate("likes")
+     .populate("dislikes");
+    const updateViews = await Blog.findByIdAndUpdate(
+      id,
       {
-          $inc:{numViews: 1},
-    },
-    {
-        new:true
-    }
+        $inc: { numViews: 1 },
+      },
+      { new: true }  
+
     );
-    
-    res.json({updateViews});
-    }catch(error){
-        throw new Error(error);
-    }
-    });
+    res.json(getBlog);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 //Get all blog
+
+
 const getAllBlog =asyncHandler(async(req,res)=>{
     try{
         const getBlogs = await Blog.find();
@@ -130,6 +132,9 @@ const deleteBlog =asyncHandler(async(req,res)=>{
           res.json(blog);
         }
       });
+
+
+
       const disliketheBlog = asyncHandler(async (req, res) => {
         const { blogId } = req.body;
         validateMongoDbId(blogId);
@@ -179,4 +184,4 @@ const deleteBlog =asyncHandler(async(req,res)=>{
       
 
 
-module.exports ={createBlog,updateBlog,getBlog,getAllBlog,deleteBlog,liketheBlog};
+module.exports ={createBlog,updateBlog,getBlog,getAllBlog,deleteBlog,liketheBlog,disliketheBlog};
