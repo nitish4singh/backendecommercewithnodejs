@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 4000;
 const authRouter =require('./routes/authRoute');
 const productRouter =require('./routes/productRoute');
 const productcategoryRouter =require('./routes/productcategoryroute');
+const brandRouter =require('./routes/brandRoute');
+
 
 const blogRouter =require('./routes/blogRoutes');
 const blogcategoryRouter = require("./routes/blogCategoryRoute");
@@ -26,6 +28,7 @@ app.use("/api/product", productRouter);
 app.use("/api/productCategory", productcategoryRouter);
 app.use("/api/blog",blogRouter);
 app.use("/api/blogcategory", blogcategoryRouter);
+app.use("/api/brand", brandRouter);
 
 
 app.use(notFound);
