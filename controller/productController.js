@@ -167,7 +167,7 @@ if(alreadyadded){
   }catch(error){
     throw new Error(error);
   }
-})
+});
 
 // adding the function of rating
 const rating = asyncHandler(async (req, res) => {
@@ -228,6 +228,8 @@ const rating = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
+
 
 module.exports = {
   createProduct,

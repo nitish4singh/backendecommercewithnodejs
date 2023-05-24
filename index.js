@@ -10,8 +10,6 @@ const productRouter =require('./routes/productRoute');
 const productcategoryRouter =require('./routes/productcategoryroute');
 const brandRouter =require('./routes/brandRoute');
 const couponRouter = require('./routes/couponRoute');
-
-
 const blogRouter =require('./routes/blogRoutes');
 const blogcategoryRouter = require("./routes/blogCategoryRoute");
 
