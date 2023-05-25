@@ -38,4 +38,5 @@ cloudinary.config({
     });
   };
   
-  module.exports = { cloudinaryUploadImg, cloudinaryDeleteImg };
+  module.exports = { cloudinaryUploadImg, cloudinaryDeleteImg };                                          
+  
