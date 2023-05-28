@@ -17,24 +17,8 @@ const createProduct = asyncHandler(async (req, res) => {
   }
 });
 
-//Update a product
 
 
-// const updateProduct = asyncHandler(async (req, res) => {
-//   const id = req.params;
-//   //validateMongoDbId(id);
-//   try {
-//     if (req.body.title) {
-//       req.body.slug = slugify(req.body.title);
-//     }
-//     const updateProduct = await Product.findOneAndUpdate({ id }, req.body, {
-//       new: true,
-//     });
-//     res.json(updateProduct);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// });
 
 const updateProduct = asyncHandler(async (req, res) => {
     const product =await Product.findById(req.params.id);
@@ -77,24 +61,6 @@ const getaProduct = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
-
-
-
-// to get all the produuct from the database using filtlering  rough way 
-
-// const getAllProduct = asyncHandler(async (req, res) => {
-//   //const { id } = req.params;
-//   console.log(req.query);
-//   try {
-//     const getallProduct = await Product.find(req.query);
-//     res.json(getallProduct);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// });
-
-
-
 
 
 const getAllProduct = asyncHandler(async (req, res) => {
@@ -230,7 +196,6 @@ const rating = asyncHandler(async (req, res) => {
 });
 
 
-
 module.exports = {
   createProduct,
   getaProduct,
@@ -239,4 +204,5 @@ module.exports = {
   deleteProduct,
   addToWishlist,
   rating,
+  
 };

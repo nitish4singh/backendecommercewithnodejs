@@ -1,7 +1,7 @@
 const cloudinary = require("cloudinary");
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY_CLOUDINARY,
+    cloud_name:process.env.CLOUD_NAME,
+    api_key:process.env.API_KEY_CLOUDINARY,
     api_secret:process.env.API_SECRETE_CLOUDINARY
   });
   
@@ -17,7 +17,7 @@ cloudinary.config({
           {
             resource_type: "auto",
           }
-        );
+        );console.log(cloudinary.url)
       });
     });
   };
