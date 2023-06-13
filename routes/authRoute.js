@@ -12,7 +12,7 @@ const { createUser,
      handleRefreshToken,
      logout,
      updatePassword ,
-     forgotPasswordToken,resetPassword, adminLogin, getWishList, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getAllOrders, updateOrderStatus
+     forgotPasswordToken,resetPassword, adminLogin, getWishList, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getAllOrders, updateOrderStatus, getMonthWiseOrdeIncome, getYearlyTotalOrders
     } = require('../controller/userController');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const router =express.Router();
@@ -28,6 +28,9 @@ router.post("/cart", authMiddleware, userCart);
 router.post("/cart/applycoupon", authMiddleware, applyCoupon);
 router.post("/cart/cash-order", authMiddleware, createOrder);
 router.get('/all-users',getallUser);
+router.get("/getMonthWiseOrderIncome", authMiddleware, getMonthWiseOrdeIncome);
+router.get("/getYearlyOrders", authMiddleware, getYearlyTotalOrders);
+
 
 router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
 router.post("/getorderbyuser/:id", authMiddleware, isAdmin, getAllOrders);
@@ -43,5 +46,4 @@ router.put('/edit-user',authMiddleware,updateauser);
 router.put('/save-address',authMiddleware,saveAddress);
 router.put('/block-user/:id',authMiddleware,isAdmin,blockUser);
 router.put('/unblock-user/:id',authMiddleware,isAdmin,unblockUser);
-
 module.exports =router;

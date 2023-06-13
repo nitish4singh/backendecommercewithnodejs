@@ -4,6 +4,7 @@ const { createBlog, updateBlog, getBlog, getAllBlogs, deleteBlog, liketheBlog, d
 const router = express.Router();
 
 
+
 router.post("/", authMiddleware, isAdmin, createBlog);
 router.put('/likes',authMiddleware,liketheBlog);
 router.put('/dislikes',authMiddleware,disliketheBlog);
