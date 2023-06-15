@@ -476,19 +476,6 @@ const getOrders = asyncHandler(async (req, res) => {
   }
 });
 
-//geta order of all user order
-
-const getAllOrders = asyncHandler(async (req, res) => {
-  try {
-    const alluserorders = await Order.find()
-      .populate("products.product")
-      .populate("orderby")
-      .exec();
-    res.json(alluserorders);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
 const getOrderByUserId = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
@@ -498,6 +485,31 @@ const getOrderByUserId = asyncHandler(async (req, res) => {
       .populate("orderby")
       .exec();
     res.json(userorders);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const getMyOrders = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  try {
+    const orders = await Order.find({ user: _id });
+    res.json({
+      orders,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+//geta order of all user order
+const getAllOrders = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  try {
+    const orders = await Order.find({});
+    res.json({
+      orders,
+    });
   } catch (error) {
     throw new Error(error);
   }
@@ -569,7 +581,6 @@ const getMonthWiseOrdeIncome = asyncHandler(async (req, res) => {
   ]);
   res.json(data);
 });
-
 
 const getYearlyTotalOrders = asyncHandler(async (req, res) => {
   let monthNames = [
