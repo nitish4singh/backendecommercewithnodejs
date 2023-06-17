@@ -1,7 +1,5 @@
 const mongoose = require("mongoose"); // Erase if already required
 
-
-
 // Declare the Schema of the Mongo model
 var productSchema = new mongoose.Schema(
   {
@@ -39,8 +37,6 @@ var productSchema = new mongoose.Schema(
     sold: {
       type: Number,
       default: 0,
-      // to  not display the user sold item 
-      select:false
     },
     images: [
       {
@@ -48,7 +44,7 @@ var productSchema = new mongoose.Schema(
         url: String,
       },
     ],
-    color: [],
+    color: [{ type: mongoose.Schema.Types.ObjectId, ref: "Color" }],
     tags: String,
     ratings: [
       {
