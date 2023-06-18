@@ -50,7 +50,7 @@ router.get("/getmyorders", authMiddleware, getMyOrders);
 router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
 router.get("/getaOrder/:id", authMiddleware, isAdmin, getSingleOrders);
 router.put("/updateOrder/:id", authMiddleware, isAdmin, updateOrder);
-/*Wrouter.post("/getorderbyuser/:id", authMiddleware, isAdmin, getAllOrders); */
+/*router.post("/getorderbyuser/:id", authMiddleware, isAdmin, getAllOrders); */
 router.get(
   "/getMonthWiseOrderIncome",
   authMiddleware,
